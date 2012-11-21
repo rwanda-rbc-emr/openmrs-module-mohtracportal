@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//OpenMRS//DTD OpenMRS Config 1.2//EN" "http://resources.openmrs.org/doctype/config-1.2.dtd">
+
+<module configVersion="1.2">
+
+	<id>mohtracportal</id>
+	<name>MOH-Trac Portal</name>
+	<version>0.2.2.1</version>
+	<package>org.openmrs.module.@MODULE_ID@</package>
+	<author>MOH</author>
+	<description>
+		All modules from MoH-TRAC plus
+	</description>
+
+	<activator>@MODULE_PACKAGE@.MohTracPortalModuleActivator</activator>
+
+	<require_version>1.6.2.12911</require_version>
+
+	<!-- <extension>
+		<point>org.openmrs.navigation.homepage</point>
+		<class>@MODULE_PACKAGE@.extension.html.RedirectToActivityPage</class>
+	</extension>
+
+	<extension>
+		<point>org.openmrs.gutter.tools</point>
+		<class>@MODULE_PACKAGE@.extension.html.MohTracActivitiesGutterLink</class>
+	</extension> -->
+	
+	<extension>
+		<point>org.openmrs.admin.list</point>
+		<class>@MODULE_PACKAGE@.extension.html.AdminList</class>
+	</extension>
+
+
+	<!--
+		AOP <advice> <point>org.openmrs.api.FormService</point>
+		<class>@MODULE_PACKAGE@.advice.DuplicateFormAdvisor</class> </advice>
+		/AOP
+	-->
+
+
+	<!-- Required Privileges -->
+	<privilege>
+		<name>View MOH-TRAC Portal</name>
+		<description>Allows user to access MOH-TRAC Activities page</description>
+	</privilege>
+
+	<privilege>
+		<name>Manage MOH-TRAC Portal Configurations</name>
+		<description>Allows user to edit MoH-TRAC Portal configurations</description>
+	</privilege>
+
+	<privilege>
+		<name>View TRAC Portal Users performance</name>
+		<description>Allows user to view all users performance</description>
+	</privilege>
+
+	<privilege>
+		<name>View TRAC Portal modules functionalities</name>
+		<description>Allows user to access TRAC modules functionalities
+			page</description>
+	</privilege>
+
+	<privilege>
+		<name>View TRAC Portal Administration Page</name>
+		<description>Allows user to access TRAC Portal Administration
+			page</description>
+	</privilege>
+
+	<privilege>
+		<name>View TRAC Portal patients listing and export</name>
+		<description>Allows user to access TRAC patient listing and export</description>
+	</privilege>
+
+	<privilege>
+		<name>View lab results</name>
+		<description>Able to view patients lab results</description>
+	</privilege>
+
+	<privilege>
+		<name>Manage Sponsors</name>
+		<description>Able to add/edit/delete sponsors</description>
+	</privilege>
+	
+	<privilege>
+		<name>Manage Locations/Sponsors</name>
+		<description>Able to add/edit/delete location/sponsors</description>
+	</privilege>
+	
+	<privilege>
+		<name>Create Regimen</name>
+		<description>Able to create a new regimen</description>
+	</privilege>
+	
+	<privilege>
+		<name>Delete Regimen</name>
+		<description>Able to delete a regimen</description>
+	</privilege>
+	
+	<privilege>
+		<name>View Regimens</name>
+		<description>Able to view list of regimens</description>
+	</privilege>
+	
+	<!-- General privileges for all modules -->
+	<privilege>
+		<name>View Patient Names</name>
+		<description>Able to view patient names</description>
+	</privilege>
+	
+	<privilege>
+		<name>Export Individual Patient Data</name>
+		<description>Able to export individual patient data</description>
+	</privilege>
+	
+	<privilege>
+		<name>Export Collective Patient Data</name>
+		<description>Able to export collective patient data</description>
+	</privilege>
+	
+	<!-- End General privileges for all modules -->
+	
+	<!-- /Required Privileges -->
+
+
+	<!-- Required Global Properties -->
+	<globalProperty>
+		<property>@MODULE_ID@.configured</property>
+		<defaultValue>false</defaultValue>
+		<description> If this value is FALSE, that means the module has not
+			been
+			configured while it has, set to TRUE after the configuration.</description>
+	</globalProperty>
+	
+	<globalProperty>
+		<property>@MODULE_ID@.helpmessage.display</property>
+		<defaultValue>true</defaultValue>
+		<description> This will allow help message to be displayed, if set to true.</description>
+	</globalProperty>
+	
+	<globalProperty>
+		<property>@MODULE_ID@.cd4count.criticallevel</property>
+		<defaultValue>350</defaultValue>
+		<description> This should be a numeric value indicating the critical level of CD4 count.</description>
+	</globalProperty>
+
+	<globalProperty>
+		<property>@MODULE_ID@.program.hiv</property>
+		<defaultValue></defaultValue>
+		<description> This should be the HIV program_id</description>
+	</globalProperty>
+
+	<globalProperty>
+		<property>@MODULE_ID@.program.pmtct</property>
+		<defaultValue></defaultValue>
+		<description> This should be the PMTCT program_id</description>
+	</globalProperty>
+
+	<globalProperty>
+		<property>@MODULE_ID@.attributeType.civilStatus</property>
+		<defaultValue></defaultValue>
+		<description> This should be the "Civil Status attribute type id"</description>
+	</globalProperty>
+
+	<globalProperty>
+		<property>@MODULE_ID@.attributeType.educationLevel</property>
+		<defaultValue></defaultValue>
+		<description> This should be the "Education Level attribute type id"</description>
+	</globalProperty>
+
+	<globalProperty>
+		<property>@MODULE_ID@.attributeType.mainActivity</property>
+		<defaultValue></defaultValue>
+		<description> This should be the "Main Activity attribute type id"</description>
+	</globalProperty>
+
+	<globalProperty>
+		<property>@MODULE_ID@.recordperpage</property>
+		<defaultValue>25</defaultValue>
+		<description> The number of record per page</description>
+	</globalProperty>
+
+	<globalProperty>
+		<property>@MODULE_ID@.defaultLocationId</property>
+		<defaultValue></defaultValue>
+		<description> Default location</description>
+	</globalProperty>
+
+	<globalProperty>
+		<property>@MODULE_ID@.identifierType.nid</property>
+		<defaultValue></defaultValue>
+		<description> This should be the "National ID" Identifier type</description>
+	</globalProperty>
+
+	<globalProperty>
+		<property>@MODULE_ID@.identifierType.tracnet</property>
+		<defaultValue></defaultValue>
+		<description> This should be the "TRACNET ID" Identifier type</description>
+	</globalProperty>
+
+	<globalProperty>
+		<property>@MODULE_ID@.identifierType.hc_localid</property>
+		<defaultValue></defaultValue>
+		<description> This should be the any other important Identifier that can be used in the Health center</description>
+	</globalProperty>
+
+	<!-- /Required Global Properties -->
+
+
+	<dwr>
+		<allow>
+			<create creator="new" javascript="TracPortalDWRUtil">
+				<param name="class" value="org.openmrs.module.mohtracportal.web.dwr.DwrUtil" />
+				<include method="findPatient" />
+				<include method="getPatientList" />
+			</create>
+			<convert converter="bean" match="org.openmrs.web.dwr.PatientListItem" />
+		</allow>
+	</dwr>
+
+
+	<!-- Servlets -->
+	<!--
+		Accessed through the url
+		/pageContext()/moduleServlet/<moduleId>/<servlet-name> <servlet>
+		<servlet-name>formDownload</servlet-name>
+		<servlet-class>@MODULE_PACKAGE@.web.FormDownloadServlet</servlet-class>
+		</servlet>
+	-->
+	<!-- /Servlets -->
+
+
+	<!-- Internationalization -->
+	<!-- All message codes should start with @MODULE_ID@.* -->
+	<messages>
+		<lang>en</lang>
+		<file>messages.properties</file>
+	</messages>
+	<messages>
+		<lang>fr</lang>
+		<file>messages_fr.properties</file>
+	</messages>
+	<!-- /Internationalization -->
+
+	<!-- Mapping files -->
+	<mappingFiles>
+		Sponsor.hbm.xml
+	</mappingFiles>
+	<!-- /Mapping files -->
+
+
+</module>
+

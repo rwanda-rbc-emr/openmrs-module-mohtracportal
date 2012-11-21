@@ -1,0 +1,178 @@
+.adminMenuList #menu li {
+	display: list-item;
+	border-left-width: 0px;
+}
+
+.adminMenuList #menu li.first {
+	display: none;
+}
+
+.adminMenuList #menu {
+	list-style: none;
+	margin-left: 10px;
+	margin-top: 0;
+}
+
+#tracAdminListContent {
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#patientTabs a {
+	-moz-border-radius-topleft: 3px;
+	-moz-border-radius-topright: 3px;
+}
+
+.numberCol{
+	text-align: left;
+}
+
+.sampleCodeCol{
+	text-align: left;
+}
+
+.locationCol{
+	text-align: left;
+}
+
+.personNameCol{
+	text-align: left;
+}
+
+.testCol{
+	text-align: left;
+}
+
+.testDateCol{
+	text-align: left;
+}
+
+.resultCol{
+	text-align: left;
+}
+
+.commentCol{
+	text-align: left;
+}
+
+.menuTab,.menuLink{	
+	width: 100%;
+	cursor: pointer;
+}
+
+.menuTab{
+	font-weight: bold;
+	text-align: center;
+}
+
+.menuLink:hover{
+	background-color: #efefef;
+}
+
+.menuTab:hover, .menuTabCurrent{
+	background-color: #dddddd;
+}
+
+.resumedExit{
+	background-color: #dddddd;
+}
+
+.deadStyle{
+	background-color: #ff0000;
+}
+
+.legende,#usersList{
+	padding: 3px;
+	border: 1px solid #dddddd;
+	-moz-border-radius: 3px;
+}
+
+#usersList{
+	width: 100%;
+}
+
+.legende{
+	cursor: pointer;
+}
+
+#close, #usersId{
+	cursor: pointer;
+	max-width: 250px;
+	border: 1px solid #dddddd;	
+	-moz-border-radius: 4px;
+}
+
+.listUser{
+	padding: 2px;
+	margin-left: 20px;
+}
+
+.detail:hover{
+	background-color: whitesmoke;
+	cursor: pointer;
+}
+
+.list_exportBt{
+	cursor: pointer;
+	padding: 2px;
+	font-size: 9px;
+	color: #8FABC7 !important;
+	border: 1px solid #FFFFFF !important;
+	margin-left: 3px;
+	-moz-border-radius: 4px;
+	font-weight: bold;
+}
+
+input[readonly=readonly],input[readonly=readonly]:focus{
+	background-color: #ebebeb;
+}
+
+.voided{
+	text-decoration : line-through !important;
+	font-style: italic;
+}
+
+/***********Configuration***********/
+
+.configDescription,.configDefaultValue,.configComment {
+	vertical-align: top;
+}
+
+.configDescription {
+	font-weight: bold;
+	min-width: 55% !important;
+	max-width: 55% !important;
+	overflow: hidden !important;
+	margin-right: 3px;
+	padding-right: 5px;
+}
+
+.configSelect{
+	min-width: 35% !important;
+	max-width: 35% !important;
+	overflow: hidden !important;
+}
+
+.configDefaultValue {
+	font-style: italic;
+}
+
+.configComment{
+	font-family:Verdana,'Lucida Grande','Trebuchet MS',Arial,Sans-Serif;
+	font-size: 0.9em;
+	font-weight: normal;
+	font-style: italic;
+	padding-left: 10px;
+}
+
+.configTable{
+	border-collapse: collapse;
+	border-spacing: 0;
+	margin: 0;
+	width: 100%;
+}
+
+.even {
+	background-color: whitesmoke;
+}

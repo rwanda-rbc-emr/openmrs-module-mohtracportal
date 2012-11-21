@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="org.openmrs.module.mohtracportal">
+	
+	<class name="Sponsor" table="trac_sponsor">
+
+		<id name="sponsorId" type="java.lang.Integer" column="sponsor_id" unsaved-value="0">
+			<generator class="native" />
+		</id>
+		
+		<property name="name" column="name" type="java.lang.String"/>
+		<property name="description" column="description" type="java.lang.String"/>
+		<property name="dateCreated" column="date_created" type="date"/>
+		<many-to-one name="creator" column="creator" class="org.openmrs.User" not-null="true" />
+		<property name="voided" column="voided" type="java.lang.Boolean"/>
+		<property name="dateVoided" column="date_voided" type="date"/>
+		<many-to-one name="voidedBy" column="voided_by" class="org.openmrs.User"/>
+		
+	</class>
+	
+	<class name="SampleCode" table="trac_sample_test">
+
+		<id name="sampleTestId" type="java.lang.Integer" column="sample_test_id" unsaved-value="0">
+			<generator class="native" />
+		</id>
+		
+		<property name="sampleCode" column="sample_code" type="java.lang.String"/>
+		<many-to-one name="testTaken" column="test_obs_id" class="org.openmrs.Obs" />
+		<property name="comment" column="comment" type="java.lang.String"/>
+		<property name="dateCreated" column="date_created" type="date"/>
+		<many-to-one name="creator" column="creator" class="org.openmrs.User" not-null="true" />
+		<property name="voided" column="voided" type="java.lang.Boolean"/>
+		<property name="dateVoided" column="date_voided" type="date"/>
+		<many-to-one name="voidedBy" column="voided_by" class="org.openmrs.User"/>
+		
+	</class>
+	
+	<class name="SponsorLocation" table="trac_sponsor_location">
+
+		<id name="sponsorLocationId" type="java.lang.Integer" column="sponsor_location_id" unsaved-value="0">
+			<generator class="native" />
+		</id>
+		
+		<many-to-one name="sponsor" column="sponsor_id" class="Sponsor" />
+		<many-to-one name="location" column="location_id" class="org.openmrs.Location" />
+		<property name="description" column="description" type="java.lang.String"/>
+		<property name="sponseredFrom" column="sponsered_since" type="date"/>
+		<property name="dateCreated" column="date_created" type="date"/>
+		<many-to-one name="createdBy" column="creator" class="org.openmrs.User" not-null="true" />
+		<property name="voided" column="voided" type="java.lang.Boolean"/>
+		<property name="dateVoided" column="date_voided" type="date"/>
+		<many-to-one name="voidedBy" column="voided_by" class="org.openmrs.User"/>
+		
+	</class>
+	
+</hibernate-mapping>

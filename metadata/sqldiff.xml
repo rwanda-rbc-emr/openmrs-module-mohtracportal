@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqldiff PUBLIC "-//OpenMRS//DTD OpenMRS SQL Diff Config 1.0//EN" "http://resources.openmrs.org/doctype/sqldiff-1.0.dtd">
+
+<sqldiff version="1.0">
+	<help>
+		USE:
+			The diffs are ordered by datamodel version number.
+			The script can be run in a top down fashion and is
+			expected to not failor overwrite old data
+	</help>
+	
+	<diff>
+		<version>1.0.0</version>
+		<author>Yves GAKUBA</author>
+		<date>Oct 18th 2010</date>
+		<description>
+			Add sponsor, sponsor_location and sample_test tables
+		</description>
+		<sql>
+			
+			create table IF NOT EXISTS trac_sponsor(
+				sponsor_id int(11) not null auto_increment,
+				name varchar(255) not null,
+				description varchar(255) default null,
+				date_created date default null,
+				creator int(11) not null,
+				voided tinyint(4) not null,
+				date_voided date default null,
+				voided_by int(11) default null,
+				primary key (sponsor_id),
+				FOREIGN KEY (`creator`) REFERENCES `users` (`user_id`),
+				FOREIGN KEY (`voided_by`) REFERENCES `users` (`user_id`)
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+			
+			create table IF NOT EXISTS trac_sample_test(
+				sample_test_id int(11) not null auto_increment,
+				sample_code varchar(25) not null,
+				test_obs_id int(11) default null,
+				comment varchar(255) default null,
+				date_created date default null,
+				creator int(11) not null,
+				voided tinyint(4) not null,
+				date_voided date default null,
+				voided_by int(11) default null,
+				primary key (sample_test_id),
+				UNIQUE (sample_code),				
+				FOREIGN KEY (`test_obs_id`) REFERENCES `obs` (`obs_id`),
+				FOREIGN KEY (`creator`) REFERENCES `users` (`user_id`),
+				FOREIGN KEY (`voided_by`) REFERENCES `users` (`user_id`)
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+			
+			create table IF NOT EXISTS trac_sponsor_location(
+				sponsor_location_id int(11) not null auto_increment,
+				sponsor_id int(11) not null,
+				location_id int(11) not null,
+				description varchar(255) default null,
+				sponsered_since date not null,
+				date_created date default null,
+				creator int(11) not null,
+				voided tinyint(4) not null,
+				date_voided date default null,
+				voided_by int(11) default null,
+				primary key (sponsor_location_id),
+				FOREIGN KEY (`creator`) REFERENCES `users` (`user_id`),
+				FOREIGN KEY (`voided_by`) REFERENCES `users` (`user_id`),
+				FOREIGN KEY (`location_id`) REFERENCES `location` (`location_id`),
+				FOREIGN KEY (`sponsor_id`) REFERENCES `trac_sponsor` (`sponsor_id`)
+			) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+			
+		</sql>
+	</diff>
+	
+	<diff>
+		<version>1.0.1</version>
+		<author>Yves GAKUBA</author>
+		<date>Oct 18th 2010</date>
+		<description>
+			Add  regimencomposition, regimencategory tables
+		</description>
+		<sql>
+			CREATE TABLE IF NOT EXISTS `regimencomposition` (
+			   `regimen_id` int(11) NOT NULL AUTO_INCREMENT,
+			   `regimen_category` varchar(45) DEFAULT NULL,
+		       `regimen_name` varchar(45) DEFAULT NULL,
+		       `drug_concept_id1` int(11) DEFAULT NULL,
+		       `drug_concept_id2` int(11) DEFAULT NULL,
+		       `drug_concept_id3` int(11) DEFAULT NULL,
+		       `drug_concept_id4` int(11) DEFAULT NULL,
+		 		PRIMARY KEY (`regimen_Id`)	
+			) ;
+				
+		 	CREATE TABLE IF NOT EXISTS `regimencategory` (
+			   `regimen_category_id` int(11) NOT NULL AUTO_INCREMENT,
+			   `regimen_category_name` varchar(55) DEFAULT NULL,      
+		 		PRIMARY KEY (`regimen_category_id`)
+			) ;	
+		  
+			 INSERT IGNORE INTO regimencategory (regimen_category_id,regimen_category_name) VALUES (1,'adultRegimen');
+			 INSERT IGNORE INTO regimencategory (regimen_category_id,regimen_category_name) VALUES (2,'pediatricRegimen');
+			 INSERT IGNORE INTO regimencategory (regimen_category_id,regimen_category_name) VALUES (3,'pediatricRegimenSecondLine');
+			 INSERT IGNORE INTO regimencategory (regimen_category_id,regimen_category_name) VALUES (4,'adultRegimensSecondLine');
+			 INSERT IGNORE INTO regimencategory (regimen_category_id,regimen_category_name) VALUES (5,'prophylaxiePostExpositions'); 
+			 INSERT IGNORE INTO regimencategory (regimen_category_id,regimen_category_name) VALUES (6,'pmtctCompositions');
+			 INSERT IGNORE INTO regimencategory (regimen_category_id,regimen_category_name) VALUES (7,'PediatricSirop');
+			 INSERT IGNORE INTO regimencategory (regimen_category_id,regimen_category_name) VALUES (8,'adultRegimensThirdLine');
+		 
+		   		
+		 </sql>
+	</diff>
+	
+	<diff>
+		<version>1.0.2</version>
+		<author>Yves GAKUBA</author>
+		<date>May 27th 2011</date>
+		<description>
+			Set the default of `trac_sample_test.sample_code` to NULL
+		</description>
+		<sql>
+			ALTER TABLE `trac_sample_test` MODIFY `sample_code` VARCHAR(25) DEFAULT NULL;	   		
+		 </sql>
+	</diff>
+	
+	<diff>
+		<version>1.0.3</version>
+		<author>Yves GAKUBA</author>
+		<date>July 5th 2011</date>
+		<description>
+			Add column description, creator, date_created, voided, voided_by, date_voided and void_reason to table regimencategory
+		</description>
+		<sql>
+			ALTER TABLE `regimencategory` ADD COLUMN `description` varchar(255) DEFAULT NULL;
+			
+			ALTER TABLE `regimencategory` ADD COLUMN `creator` int(11) DEFAULT NULL;
+			UPDATE `regimencategory` SET creator = (SELECT MIN(user_id) FROM users);
+			ALTER TABLE `regimencategory` ADD CONSTRAINT FOREIGN KEY (`creator`) REFERENCES `users` (`user_id`);
+			
+			ALTER TABLE `regimencategory` ADD COLUMN `date_created` date DEFAULT NULL;	
+			
+			ALTER TABLE `regimencategory` ADD COLUMN `voided` tinyint(4) DEFAULT 0;
+			
+			ALTER TABLE `regimencategory` ADD COLUMN `voided_by` int(11) DEFAULT NULL;
+			ALTER TABLE `regimencategory` ADD CONSTRAINT FOREIGN KEY (`voided_by`) REFERENCES `users` (`user_id`);
+			
+			ALTER TABLE `regimencategory` ADD COLUMN `date_voided` date DEFAULT NULL;
+			
+			ALTER TABLE `regimencategory` ADD COLUMN `void_reason` varchar(255) DEFAULT NULL;
+		 </sql>
+	</diff>
+	
+	<diff>
+		<version>1.0.4</version>
+		<author>Yves GAKUBA</author>
+		<date>July 5th 2011</date>
+		<description>
+			Add column creator, date_created, voided, voided_by, date_voided and void_reason to table regimencomposition
+		</description>
+		<sql>
+			ALTER TABLE `regimencomposition` ADD COLUMN `creator` int(11) DEFAULT NULL;
+			UPDATE `regimencomposition` SET creator = (SELECT MIN(user_id) FROM users);
+			ALTER TABLE `regimencomposition` ADD CONSTRAINT FOREIGN KEY (`creator`) REFERENCES `users` (`user_id`);
+			
+			ALTER TABLE `regimencomposition` ADD COLUMN `date_created` date DEFAULT NULL;	
+			
+			ALTER TABLE `regimencomposition` ADD COLUMN `voided` tinyint(4) DEFAULT 0;
+			
+			ALTER TABLE `regimencomposition` ADD COLUMN `voided_by` int(11) DEFAULT NULL;
+			ALTER TABLE `regimencomposition` ADD CONSTRAINT FOREIGN KEY (`voided_by`) REFERENCES `users` (`user_id`);
+			
+			ALTER TABLE `regimencomposition` ADD COLUMN `date_voided` date DEFAULT NULL;
+			
+			ALTER TABLE `regimencomposition` ADD COLUMN `void_reason` varchar(255) DEFAULT NULL;
+		 </sql>
+	</diff>
+	
+</sqldiff>

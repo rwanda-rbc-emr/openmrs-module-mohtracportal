@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+	version="2.0">
+
+	<description>MoH-TRAC tag library</description>
+	<tlib-version>1.0</tlib-version>
+	<short-name>mohtractag</short-name>
+	<uri>http://openmrs.org/module/mohtracportal</uri>
+	
+	<function>
+		<name>currentLocation</name>
+		<function-class>org.openmrs.module.mohtracportal.util.MohTracPortalTag</function-class>
+		<function-signature>java.lang.String getCurrentLocation()</function-signature>
+	</function>
+	
+	<function>
+		<name>personName</name>
+		<function-class>org.openmrs.module.mohtracportal.util.MohTracPortalTag</function-class>
+		<function-signature>java.lang.String getPersonNames(java.lang.Integer)</function-signature>
+	</function>
+
+	<function>
+		<name>personIdentifierByIds</name>
+		<function-class>org.openmrs.module.mohtracportal.util.MohTracPortalTag</function-class>
+		<function-signature>java.lang.String personIdentifierByPatientIdAndIdentifierTypeId(java.lang.Integer,java.lang.Integer)</function-signature>
+	</function>
+	
+	<function>
+		<name>attributeTypeNameByIdAsString</name>
+		<function-class>org.openmrs.module.mohtracportal.util.MohTracPortalTag</function-class>
+		<function-signature>java.lang.String getAttributeTypeNameByIdAsString(java.lang.String)</function-signature>
+	</function>
+	
+	<function>
+		<name>identifierTypeNameByIdAsString</name>
+		<function-class>org.openmrs.module.mohtracportal.util.MohTracPortalTag</function-class>
+		<function-signature>java.lang.String getIdentifierTypeNameByIdAsString(java.lang.String)</function-signature>
+	</function>
+	
+	<function>
+		<name>gpParser</name>
+		<function-class>org.openmrs.module.mohtracportal.util.MohTracPortalTag</function-class>
+		<function-signature>java.lang.String globalPropertyParser(java.lang.String)</function-signature>
+	</function>
+	
+	<function>
+		<name>numberOfEncounterByPatient</name>
+		<function-class>org.openmrs.module.mohtracportal.util.MohTracPortalTag</function-class>
+		<function-signature>java.lang.String getNumberOfEncounterByPatient(java.lang.Integer)</function-signature>
+	</function>
+	
+	<function>
+		<name>numberOfObjectCreatedByUser</name>
+		<function-class>org.openmrs.module.mohtracportal.util.MohTracPortalTag</function-class>
+		<function-signature>java.lang.String numberOfObjectCreatedByUser(java.lang.Integer, java.lang.Integer, java.lang.Integer)</function-signature>
+	</function>
+	
+	<function>
+		<name>dateFirstObjectCreatedByUser</name>
+		<function-class>org.openmrs.module.mohtracportal.util.MohTracPortalTag</function-class>
+		<function-signature>java.lang.String dateFirstObjectCreatedByUser(java.lang.Integer, java.lang.Integer)</function-signature>
+	</function>
+	
+	<function>
+		<name>dateLastObjectCreatedByUser</name>
+		<function-class>org.openmrs.module.mohtracportal.util.MohTracPortalTag</function-class>
+		<function-signature>java.lang.String dateLastObjectCreatedByUser(java.lang.Integer, java.lang.Integer)</function-signature>
+	</function>
+	
+</taglib>

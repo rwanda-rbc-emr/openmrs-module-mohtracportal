@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<!-- Beans to add to the current Application context definition -->
+  
+<beans>
+	
+    <bean id="mohtracportalUrlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+
+    	<property name="interceptors">
+			<list>
+				<ref bean="localeChangeInterceptor" />
+			</list>
+		</property>
+
+    	<property name="order">
+			<value>5</value>
+		</property>
+		<property name="mappings">
+            <props>
+            	<prop key="**/redirectToActivity.portlet">mohtracportalRedirectToActivityPortletController</prop>
+            	<prop key="**/welcome.portlet">mohtracportalWelcomePagePortletController</prop>
+	            <prop key="module/@MODULE_ID@/tracportal.htm">mohtracportalPortalController</prop>
+	    		<prop key="module/@MODULE_ID@/configuration.form">mohtracportalConfiguratiosController</prop>
+	    		<prop key="module/@MODULE_ID@/sponsor.form">mohtracportalFormController</prop>
+	    		<prop key="module/@MODULE_ID@/sponsors.list">mohtracportalListController</prop>
+	    		<prop key="module/@MODULE_ID@/locationsponsor.list">mohtracportalLocationSponsorViewController</prop>
+	    		<prop key="module/@MODULE_ID@/samplecodemanagement.list">mohtracportalSampleCodeListController</prop>
+	    		<prop key="module/@MODULE_ID@/locationsponsor.form">mohtracportalLocationSponsorFormController</prop>
+	    		<prop key="module/@MODULE_ID@/patientList.htm">mohtracportalPatientListController</prop>
+	    		<prop key="module/@MODULE_ID@/performance.htm">mohtracportalUserPerformanceController</prop>
+	    		<prop key="module/@MODULE_ID@/drug.list">mohtracportalDrugListController</prop>
+	    	</props>
+		</property>
+    </bean>
+	
+    <!-- Controllers -->
+	
+	<bean id="mohtracportalWelcomePagePortletController" class="@MODULE_PACKAGE@.web.controller.MohTracPortalWelcomePagePortletController" />
+	<bean id="mohtracportalRedirectToActivityPortletController" class="@MODULE_PACKAGE@.web.controller.RedirectToActivityPortletController" />
+		
+    <bean id="mohtracportalDrugListController" class="@MODULE_PACKAGE@.web.controller.MohTracPortalDrugListController">
+		<property name="viewName"><value>module/@MODULE_ID@/drugList</value></property>
+    </bean>
+	
+    <bean id="mohtracportalUserPerformanceController" class="@MODULE_PACKAGE@.web.controller.MohTracPortalUserPerformanceController">
+		<property name="viewName"><value>module/@MODULE_ID@/userPerformance</value></property>
+    </bean>
+	
+    <bean id="mohtracportalPatientListController" class="@MODULE_PACKAGE@.web.controller.MohTracPatientListController">
+		<property name="viewName"><value>module/@MODULE_ID@/patientList</value></property>
+    </bean>
+	
+    <bean id="mohtracportalListController" class="@MODULE_PACKAGE@.web.controller.MohTracPortalSponsorListController">
+		<property name="viewName"><value>module/@MODULE_ID@/sponsorsList</value></property>
+    </bean>
+	
+    <bean id="mohtracportalLocationSponsorViewController" class="@MODULE_PACKAGE@.web.controller.MohTracPortalLocationSponsorViewController">
+		<property name="viewName"><value>module/@MODULE_ID@/sponsorLocationList</value></property>
+    </bean>
+	
+    <bean id="mohtracportalConfiguratiosController" class="@MODULE_PACKAGE@.web.controller.MohTracModulesConfigurations">
+		<property name="viewName"><value>module/@MODULE_ID@/configurationForm</value></property>
+    </bean>
+	
+    <bean id="mohtracportalPortalController" class="@MODULE_PACKAGE@.web.controller.MohTracPortalModuleFormController">
+		<property name="viewName"><value>module/@MODULE_ID@/tracPortal</value></property>
+    </bean>
+	
+    <bean id="mohtracportalSampleCodeListController" class="@MODULE_PACKAGE@.web.controller.MohTracPortalSampleCodeViewController">
+		<property name="viewName"><value>module/@MODULE_ID@/sampleCodeView</value></property>
+    </bean>
+	
+    <bean id="mohtracportalFormController" class="@MODULE_PACKAGE@.web.controller.MohTracSponsorFormController">
+		<property name="formView"><value>/module/@MODULE_ID@/sponsorForm</value></property>
+		<property name="successView"><value>/module/@MODULE_ID@/sponsors.list?page=1</value></property>
+		<property name="commandName"><value>sponsor</value></property>
+		<property name="commandClass" value="@MODULE_PACKAGE@.Sponsor"></property>
+		<property name="validator">
+			<ref bean="sponsorFormValidator" />
+		</property>
+    </bean>
+	
+    <bean id="mohtracportalLocationSponsorFormController" class="@MODULE_PACKAGE@.web.controller.MohTracPortalLocationSponsorFormController">
+		<property name="formView"><value>/module/@MODULE_ID@/sponsorLocationForm</value></property>
+		<property name="successView"><value>/module/@MODULE_ID@/locationsponsor.list?page=1</value></property>
+		<property name="commandName"><value>spLoc</value></property>
+		<property name="commandClass" value="@MODULE_PACKAGE@.SponsorLocation"></property>
+		<property name="validator">
+			<ref bean="sponsorLocationFormValidator" />
+		</property>
+    </bean>
+	
+    <!-- /Controllers -->
+    
+    <!-- validators -->
+	
+	<bean id="sponsorFormValidator" class="@MODULE_PACKAGE@.validator.MohTracSponsorFormValidator" />
+	<bean id="sponsorLocationFormValidator" class="@MODULE_PACKAGE@.validator.MohTracPortalSponsorLocationFormValidator" />
+	
+	<!-- /validators -->
+	
+	 <bean parent="serviceContext">
+		<property name="moduleService">
+			<list>
+				<value>org.openmrs.module.mohtracportal.service.MohTracPortalService</value>
+				<bean class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+					<property name="transactionManager">
+						<ref bean="transactionManager" />
+					</property>
+					<property name="target">
+						<bean class="org.openmrs.module.mohtracportal.impl.MohTracPortalServiceImpl">
+							<property name="portalDao">
+								<bean class="org.openmrs.module.mohtracportal.db.hibernate.MohTracPortalDAOImpl">
+									<property name="sessionFactory">
+										<ref bean="sessionFactory" />
+									</property>
+								</bean>
+							</property>
+						</bean>
+					</property>
+					<property name="preInterceptors">
+						<list>
+							<ref bean="authorizationInterceptor" />
+						</list>
+					</property>
+					<property name="transactionAttributeSource">
+						<bean class="org.springframework.transaction.annotation.AnnotationTransactionAttributeSource" />
+					</property>
+				</bean>
+			</list>
+		</property>
+		
+	</bean>
+	
+    <!-- ========================= other beans ========================= -->
+ 
+	<bean class="@MODULE_PACKAGE@.util.ContextProvider" />
+	
+</beans>
