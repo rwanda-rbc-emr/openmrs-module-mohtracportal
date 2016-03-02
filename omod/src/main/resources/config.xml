@@ -3,10 +3,10 @@
 
 <module configVersion="1.2">
 
-	<id>mohtracportal</id>
-	<name>MOH-Trac Portal</name>
-	<version>0.2.2.1</version>
-	<package>org.openmrs.module.@MODULE_ID@</package>
+	<id>@MODULE_ID@</id>
+	<name>@MODULE_NAME@</name>
+	<version>@MODULE_VERSION@</version>
+	<package>@MODULE_PACKAGE@</package>
 	<author>MOH</author>
 	<description>
 		All modules from MoH-TRAC plus
@@ -244,7 +244,7 @@
 
 	<!-- Mapping files -->
 	<mappingFiles>
-		Sponsor.hbm.xml
+		${omodHbmConfig}
 	</mappingFiles>
 	<!-- /Mapping files -->
 
