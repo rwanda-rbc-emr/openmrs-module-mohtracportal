@@ -15,7 +15,7 @@
 
 	<openmrs:hasPrivilege privilege="Manage Locations">
 		<li>
-			<a href="${pageContext.request.contextPath}/admin/encounters/location.list"> Manage Locations </a>
+			<a href="${pageContext.request.contextPath}/admin/locations/location.list"> Manage Locations </a>
 		</li>
 	</openmrs:hasPrivilege>
 

@@ -1,9 +1,11 @@
 <%@ include file="/WEB-INF/template/include.jsp" %>
 <%@ include file="/WEB-INF/template/header.jsp" %>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/jquery-1.3.2.js" />
-<%@ taglib prefix="mohtractag" uri="/WEB-INF/view/module/mohtracportal/taglibs/mohtractag.tld" %>
 <%@ include file="template/localHeader.jsp"%>
+
+<%@ taglib prefix="mohtractag" uri="/WEB-INF/view/module/mohtracportal/taglibs/mohtractag.tld" %>
+<%@ taglib prefix="springform" uri="/WEB-INF/taglibs/spring-form.tld" %>
+
+<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/jquery-1.3.2.js" />
 
 <openmrs:require privilege="Manage Sponsors" otherwise="/login.htm" redirect="/module/@MODULE_ID@/sponsor.form" />
 
@@ -12,7 +14,7 @@
 
 <b class="boxHeader">Create/Edit Sponsor</b>
 <div class="box">
-	<form:form commandName="sponsor" method="post">
+	<springform:form commandName="sponsor" method="post">
 		<table>
 			<tr>
 				<td>Name</td>
@@ -41,7 +43,7 @@
 				<td></td>
 			</tr>
 		</table>
-	</form:form>
+	</springform:form>
 </div>
 
 	<script>

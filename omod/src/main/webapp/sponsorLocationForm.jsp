@@ -1,19 +1,20 @@
 <%@ include file="/WEB-INF/template/include.jsp" %>
 <%@ include file="/WEB-INF/template/header.jsp" %>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ include file="template/localHeader.jsp"%>
+
+<%@ taglib prefix="springform" uri="/WEB-INF/taglibs/spring-form.tld" %>
+<%@ taglib prefix="mohtractag" uri="/WEB-INF/view/module/mohtracportal/taglibs/mohtractag.tld" %>
+
 <openmrs:htmlInclude file="/scripts/calendar/calendar.js" />
 <openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/jquery-1.3.2.js" />
-<%@ taglib prefix="mohtractag" uri="/WEB-INF/view/module/mohtracportal/taglibs/mohtractag.tld" %>
 <openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/tracportal.css" />
-
-<%@ include file="template/localHeader.jsp"%>
 
 <openmrs:require privilege="Manage Locations/Sponsors" otherwise="/login.htm" redirect="/module/@MODULE_ID@/locationsponsor.list?page=1" />
 
 <h2>Assign a Sponsor to a Location</h2>
 <br/>
 
-<form:form commandName="spLoc" method="post">
+<springform:form commandName="spLoc" method="post">
 
 	<table>
 		<tr>
@@ -65,7 +66,7 @@
 		</tr>
 	</table>
 
-</form:form>
+</springform:form>
 
 <script>
 		$(document).ready(function(){

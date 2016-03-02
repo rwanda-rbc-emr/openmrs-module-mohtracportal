@@ -1,6 +1,5 @@
 <%@ include file="/WEB-INF/template/include.jsp" %>
 
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/jquery-1.3.2.js" />
 <openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/tracportal.css" />
 
 <script type="text/javascript">
@@ -17,6 +16,8 @@
 	});
 </script>
 
+<openmrs:globalProperty var="applicationName" key="application.name" defaultValue="OpenMRS"/>
+
 <c:choose>
 	<c:when test="${model.authenticatedUser != null}">
 		<div>
@@ -24,10 +25,10 @@
 				<div class="box">
 					<c:choose>
 						<c:when test="${model.showName != 'false'}">
-							<spring:message code="welcomeUser" arguments="${model.authenticatedUser.personName.givenName},${fn:substring(pageContext.request.contextPath,1,-1)}" />
+							<openmrs:message code="welcomeUser" htmlEscape="false" arguments="${model.authenticatedUser.personName.givenName},${applicationName}" />
 						</c:when>
 						<c:otherwise>
-							<spring:message code="welcome" arguments="${fn:substring(pageContext.request.contextPath,1,-1)}" />
+							<openmrs:message htmlEscape="false" code="welcome" arguments="${applicationName}" />
 						</c:otherwise>
 					</c:choose>
 					<c:if test="${model.customText != ''}">
@@ -80,7 +81,7 @@
 		
 	</c:when>
 	<c:otherwise>
-		<spring:message code="welcome" arguments="${fn:substring(pageContext.request.contextPath,1,-1)}" />
+		<openmrs:message htmlEscape="false" code="welcome" arguments="${applicationName}" />
 		<c:if test="${model.showLogin == 'true'}">
 			<br/>
 			<openmrs:portlet url="login" parameters="redirect=${model.redirect}" />

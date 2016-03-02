@@ -17,7 +17,9 @@
 					<td><select name="user">	
 						<option value="0"><spring:message code="@MODULE_ID@.user.all"/></option>
 						<c:forEach items="${users}" var="user">
-							<option value="${user.id}" <c:if test="${user.id==param.user || user.id==curUserId}">selected='selected'</c:if>>${user.personName}</option>
+							<c:if test="${user.personName ne 'daemon daemon'}">
+								<option value="${user.id}" <c:if test="${user.id==param.user || user.id==curUserId}">selected='selected'</c:if>>${user.personName}</option>
+							</c:if>
 						</c:forEach>
 					</select></td>
 					<td><input type="submit" value="<spring:message code="general.refresh"/>"/></td>
