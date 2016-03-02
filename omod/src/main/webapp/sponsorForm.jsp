@@ -5,8 +5,6 @@
 <%@ taglib prefix="mohtractag" uri="/WEB-INF/view/module/mohtracportal/taglibs/mohtractag.tld" %>
 <%@ taglib prefix="springform" uri="/WEB-INF/taglibs/spring-form.tld" %>
 
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/jquery-1.3.2.js" />
-
 <openmrs:require privilege="Manage Sponsors" otherwise="/login.htm" redirect="/module/@MODULE_ID@/sponsor.form" />
 
 <h2>Create/Edit Sponsor</h2>
@@ -47,8 +45,8 @@
 </div>
 
 	<script>
-		$(document).ready(function(){
-			$("#btSave").click(function(){
+		jQuery(document).ready(function(){
+			jQuery("#btSave").click(function(){
 				if(confirm("Are you sure you want to save ?"))
 					this.form.submit();
 			});

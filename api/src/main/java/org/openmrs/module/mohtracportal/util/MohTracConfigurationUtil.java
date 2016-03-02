@@ -5,6 +5,7 @@ package org.openmrs.module.mohtracportal.util;
 
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.openmrs.GlobalProperty;
 import org.openmrs.api.context.Context;
 
@@ -170,11 +171,11 @@ public class MohTracConfigurationUtil {
 	 * @return The TRACNET identifier type id, in case it has not been
 	 *         configured, it will return null.
 	 */
-	public static int getTracNetIdentifierTypeId() throws Exception {
+	public static Integer getTracNetIdentifierTypeId() throws Exception {
 		GlobalProperty gp = Context
 				.getAdministrationService()
 				.getGlobalPropertyObject("mohtracportal.identifierType.tracnet");
-		return (gp != null && gp.getPropertyValue().trim().compareTo("") != 0) ? Integer
+		return (gp != null && StringUtils.isNotBlank(gp.getPropertyValue()) && gp.getPropertyValue().trim().compareTo("") != 0) ? Integer
 				.parseInt(gp.getPropertyValue())
 				: null;
 	}
@@ -183,11 +184,11 @@ public class MohTracConfigurationUtil {
 	 * @return The Local Health Center identifier type id, in case it has not
 	 *         been configured, it will return null.
 	 */
-	public static int getLocalHealthCenterIdentifierTypeId() throws Exception {
+	public static Integer getLocalHealthCenterIdentifierTypeId() throws Exception {
 		GlobalProperty gp = Context.getAdministrationService()
 				.getGlobalPropertyObject(
 						"mohtracportal.identifierType.hc_localid");
-		return (gp != null && gp.getPropertyValue().trim().compareTo("") != 0) ? Integer
+		return (gp != null && StringUtils.isNotBlank(gp.getPropertyValue()) && gp.getPropertyValue().trim().compareTo("") != 0) ? Integer
 				.parseInt(gp.getPropertyValue())
 				: null;
 	}

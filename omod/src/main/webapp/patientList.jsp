@@ -1,12 +1,12 @@
 <%@ include file="/WEB-INF/template/include.jsp" %>
 <%@ include file="/WEB-INF/template/header.jsp" %>
+<%@ include file="template/localHeader.jsp"%>
+
 <%@ taglib prefix="mohtractag" uri="/WEB-INF/view/module/mohtracportal/taglibs/mohtractag.tld" %>
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/jquery-1.3.2.js" />
+
 <openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/tracportal.css" />
 <openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/listingstyle.css" />
 <openmrs:htmlInclude file="/scripts/calendar/calendar.js" />
-
-<%@ include file="template/localHeader.jsp"%>
 
 <openmrs:require privilege="View TRAC Portal patients listing and export" otherwise="/login.htm" redirect="/module/@MODULE_ID@/patientList.htm?page=1" />
 
@@ -45,10 +45,12 @@
 					<div class="listUser">
 						<table>
 							<c:forEach items="${usersList}" var="user" varStatus="status">
-								<tr>
-									<td><input value="${user.id}" type="checkbox" <c:if test="${empty usrs}">checked="checked"</c:if><c:forEach items="${usrs}" var="usr"><c:if test="${usr==user.id}">checked="checked"</c:if></c:forEach> name="chkbxUsr_${status.count}" id="chkbxUsrId_${status.count}" onclick="checkStatus()"/></td>
-									<td><label for="chkbxUsrId_${status.count}">${user.personName}</label></td>
-								</tr>
+								<c:if test="${user.personName ne 'daemon daemon'}">
+									<tr>
+										<td><input value="${user.id}" type="checkbox" <c:if test="${empty usrs}">checked="checked"</c:if><c:forEach items="${usrs}" var="usr"><c:if test="${usr==user.id}">checked="checked"</c:if></c:forEach> name="chkbxUsr_${status.count}" id="chkbxUsrId_${status.count}" onclick="checkStatus()"/></td>
+										<td><label for="chkbxUsrId_${status.count}">${user.personName}</label></td>
+									</tr>
+								</c:if>
 								<c:if test="${status.count%numberofUsersPerColumn==0}"></table></div></td><td><div class="listUser"><table></c:if>
 							</c:forEach>
 						</table>
@@ -143,21 +145,21 @@
 	</div>
 	
 	<script>
-		$(document).ready(function(){
-			$("#usersList").hide();checkStatus();
-			$("#usersId").click(function(){
+		jQuery(document).ready(function(){
+			jQuery("#usersList").hide();checkStatus();
+			jQuery("#usersId").click(function(){
 				if(document.getElementById("usersList").style.display=="none")
-					$("#usersList").show(500);
-				else $("#usersList").hide(500);
+					jQuery("#usersList").show(500);
+				else jQuery("#usersList").hide(500);
 			});
-			$("#close").click(function(){
-				$("#usersList").hide(500);
+			jQuery("#close").click(function(){
+				jQuery("#usersList").hide(500);
 			});
 		});
 
 		function checking(){
 			var i=1;
-			if(document.getElementById("chkbxUsrId_all").value==$("#checkAllWord").val()){
+			if(document.getElementById("chkbxUsrId_all").value==jQuery("#checkAllWord").val()){
 				while(document.getElementById("chkbxUsrId_"+i)!=null){
 					document.getElementById("chkbxUsrId_"+i).checked=true;
 					i++;
@@ -183,12 +185,12 @@
 				else notChecked=true;
 				i++;
 			}
-			$("#nbrOfUsers").html(((notChecked)?checked:"<spring:message code='@MODULE_ID@.all'/>"));
+			jQuery("#nbrOfUsers").html(((notChecked)?checked:"<spring:message code='@MODULE_ID@.all'/>"));
 			buildUsersList(usersList);
 		}
 
 		function buildUsersList(list){
-			$("#users").val(list);
+			jQuery("#users").val(list);
 		}
 	</script>
 	

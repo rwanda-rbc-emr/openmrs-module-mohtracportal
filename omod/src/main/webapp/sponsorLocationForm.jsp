@@ -6,7 +6,6 @@
 <%@ taglib prefix="mohtractag" uri="/WEB-INF/view/module/mohtracportal/taglibs/mohtractag.tld" %>
 
 <openmrs:htmlInclude file="/scripts/calendar/calendar.js" />
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/jquery-1.3.2.js" />
 <openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/tracportal.css" />
 
 <openmrs:require privilege="Manage Locations/Sponsors" otherwise="/login.htm" redirect="/module/@MODULE_ID@/locationsponsor.list?page=1" />
@@ -69,8 +68,8 @@
 </springform:form>
 
 <script>
-		$(document).ready(function(){
-			$("#btSave").click(function(){
+		jQuery(document).ready(function(){
+			jQuery("#btSave").click(function(){
 				if(confirm("Are you sure you want to save ?"))
 					this.form.submit();
 			});

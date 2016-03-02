@@ -2,8 +2,8 @@
 <%@ include file="/WEB-INF/template/header.jsp"%>
 
 <openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/jquery-1.3.2.js" />
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/jquery.treeview.js" />
 <openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/jquery.cookie.js" />
+<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/jquery.treeview.js" />
 <openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/jquery.treeview.css" />
 <openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/tracportal.css" />
 
@@ -144,15 +144,14 @@
 				}
 			}
 			addClass(tabObj, 'current');
-			
-			setTabCookie(tabObj.id);
+			/*setTabCookie(tabObj.id);*/
 		}
 		return false;
 	}
 
-	$(document).ready( function() {
+	jQuery(document).ready( function() {
 		
-		$("#menuList").treeview({
+		jQuery("#menuList").treeview({
 			animated: "fast",
 			collapsed: true,
 			unique: true,

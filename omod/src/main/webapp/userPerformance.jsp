@@ -1,10 +1,10 @@
 <%@ include file="/WEB-INF/template/include.jsp" %>
 <%@ include file="/WEB-INF/template/header.jsp" %>
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/jquery-1.3.2.js" />
-<%@ taglib prefix="mohtractag" uri="/WEB-INF/view/module/mohtracportal/taglibs/mohtractag.tld" %>
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/listingstyle.css" />
-
 <%@ include file="template/localHeader.jsp"%>
+
+<%@ taglib prefix="mohtractag" uri="/WEB-INF/view/module/mohtracportal/taglibs/mohtractag.tld" %>
+
+<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/listingstyle.css" />
 
 <h2><spring:message code="@MODULE_ID@.user.performance"/></h2>
 <br/>
@@ -203,7 +203,7 @@
 <script type="text/javascript">
 
 	function changeTab(tabObj) {
-		$("#critere").html(tabObj.text);
+		jQuery("#critere").html(tabObj.text);
 		if (!document.getElementById || !document.createTextNode) {return;}
 		if (typeof tabObj == "string")
 			tabObj = document.getElementById(tabObj);
@@ -224,8 +224,7 @@
 				}
 			}
 			addClass(tabObj, 'current');
-			
-			setTabCookie(tabObj.id);
+			/*setTabCookie(tabObj.id);*/
 		}
 		return false;
 	}
