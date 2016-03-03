@@ -10,14 +10,14 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.openmrs.Concept;
 import org.openmrs.Location;
 import org.openmrs.Obs;
 import org.openmrs.Person;
 import org.openmrs.api.context.Context;
+import org.openmrs.api.db.hibernate.DbSession;
+import org.openmrs.api.db.hibernate.DbSessionFactory;
 import org.openmrs.module.mohtracportal.SampleCode;
 import org.openmrs.module.mohtracportal.Sponsor;
 import org.openmrs.module.mohtracportal.SponsorLocation;
@@ -31,12 +31,12 @@ import org.openmrs.module.mohtracportal.util.MohTracUtil;
 public class MohTracPortalDAOImpl implements MohTracPortalDAO {
 
 	private Log log = LogFactory.getLog(this.getClass());
-	private SessionFactory sessionFactory;
+	private DbSessionFactory sessionFactory;
 
 	/**
 	 * @return the sessionFactory
 	 */
-	public SessionFactory getSessionFactory() {
+	public DbSessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
 
@@ -44,17 +44,17 @@ public class MohTracPortalDAOImpl implements MohTracPortalDAO {
 	 * @param sessionFactory
 	 *            the sessionFactory to set
 	 */
-	public void setSessionFactory(SessionFactory sessionFactory) {
+	public void setSessionFactory(DbSessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 
 	/**
 	 * @return
 	 */
-	private Session getSession() {
-		if (getSessionFactory().isClosed())
+	private DbSession getSession() {
+		if (getSessionFactory().getHibernateSessionFactory().isClosed())
 			log.info(">>>>Portal_DAO>> sessionFactory is closed!");
-		Session session = getSessionFactory().getCurrentSession();
+		DbSession session = getSessionFactory().getCurrentSession();
 		if (session == null) {
 			log
 					.info(">>>>Portal_DAO>> Trying to close the existing session...");

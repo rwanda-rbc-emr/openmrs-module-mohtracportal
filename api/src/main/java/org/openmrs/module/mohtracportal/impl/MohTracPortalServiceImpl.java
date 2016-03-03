@@ -32,8 +32,7 @@ public class MohTracPortalServiceImpl implements MohTracPortalService {
 	}
 
 	/**
-	 * @param portalDao
-	 *            the portalDao to set
+	 * @param portalDao the portalDao to set
 	 */
 	public void setPortalDao(MohTracPortalDAO portalDao) {
 		this.portalDao = portalDao;
