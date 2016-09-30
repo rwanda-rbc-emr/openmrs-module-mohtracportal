@@ -38,7 +38,6 @@
 				<br/>
 				
 				<openmrs:portlet id="findPatient" url="findPatient" parameters="size=full|postURL=patientDashboard.form|showIncludeVoided=false|viewType=shortEdit|hideAddNewPatient=true" />
-				
 			</div>
 			<div style="width: 24%; float: right;">
 				<b class="boxHeader">
@@ -73,6 +72,14 @@
 
 					</openmrs:hasPrivilege>
 					
+				</div>
+			</div>
+			<br/>
+			<div style="width: 74%; float: left;">
+				<b class="boxHeader">
+					<spring:message code="@MODULE_ID@.welcome.clinicalActions" />
+				</b>
+				<div class="box">
 				</div>
 			</div>
 			<div style="clear: both;"></div>
