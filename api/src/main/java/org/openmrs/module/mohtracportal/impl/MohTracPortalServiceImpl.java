@@ -10,11 +10,22 @@ import org.openmrs.Concept;
 import org.openmrs.Location;
 import org.openmrs.Obs;
 import org.openmrs.Person;
+import org.openmrs.api.context.Context;
 import org.openmrs.module.mohtracportal.SampleCode;
 import org.openmrs.module.mohtracportal.Sponsor;
 import org.openmrs.module.mohtracportal.SponsorLocation;
 import org.openmrs.module.mohtracportal.db.MohTracPortalDAO;
 import org.openmrs.module.mohtracportal.service.MohTracPortalService;
+import org.openmrs.module.reporting.definition.DefinitionSummary;
+import org.openmrs.module.reporting.evaluation.parameter.Mapped;
+import org.openmrs.module.reporting.report.Report;
+import org.openmrs.module.reporting.report.ReportRequest;
+import org.openmrs.module.reporting.report.ReportRequest.Priority;
+import org.openmrs.module.reporting.report.definition.ReportDefinition;
+import org.openmrs.module.reporting.report.definition.service.ReportDefinitionService;
+import org.openmrs.module.reporting.report.renderer.RenderingMode;
+import org.openmrs.module.reporting.report.service.ReportService;
+import org.openmrs.module.reporting.web.renderers.DefaultWebRenderer;
 
 /**
  * @author Yves GAKUBA
@@ -200,4 +211,31 @@ public class MohTracPortalServiceImpl implements MohTracPortalService {
 		return portalDao.executeMySQLCommand(sql);
 	}
 
+	@Override
+	public Report executeAndGetAdultArtMonthlyWhichIncludesAdultFollowUpReport() {
+		DefinitionSummary lostToFollowUp = null;
+		Report report = null;
+		List<DefinitionSummary> defs = Context.getService(ReportDefinitionService.class)
+				.getAllDefinitionSummaries(false);
+		
+		for (DefinitionSummary ds : defs) {
+			if ("HIV-Adult ART Report-Monthly".equals(ds.getName())) {
+				lostToFollowUp = ds;
+				break;
+			}
+		}
+
+		if (lostToFollowUp != null) {
+			ReportRequest rr = Context.getService(ReportService.class).getReportRequestByUuid(lostToFollowUp.getUuid());
+			ReportDefinition def = Context.getService(ReportDefinitionService.class)
+					.getDefinitionByUuid(lostToFollowUp.getUuid());
+
+			if (rr != null)
+				rr = new ReportRequest(new Mapped<ReportDefinition>(def, null), null,
+						new RenderingMode(new DefaultWebRenderer(), "Web", null, 100), Priority.NORMAL, null);
+			report = Context.getService(ReportService.class).runReport(rr);
+		}
+
+		return report;
+	}
 }
