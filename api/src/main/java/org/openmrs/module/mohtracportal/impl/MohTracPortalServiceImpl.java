@@ -6,6 +6,7 @@ package org.openmrs.module.mohtracportal.impl;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.openmrs.Concept;
 import org.openmrs.Location;
 import org.openmrs.Obs;
@@ -43,7 +44,8 @@ public class MohTracPortalServiceImpl implements MohTracPortalService {
 	}
 
 	/**
-	 * @param portalDao the portalDao to set
+	 * @param portalDao
+	 *            the portalDao to set
 	 */
 	public void setPortalDao(MohTracPortalDAO portalDao) {
 		this.portalDao = portalDao;
@@ -52,9 +54,8 @@ public class MohTracPortalServiceImpl implements MohTracPortalService {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.openmrs.module.mohtracportal.service.MohTracPortalService#getAllSponsors
-	 * ()
+	 * @see org.openmrs.module.mohtracportal.service.MohTracPortalService#
+	 * getAllSponsors ()
 	 */
 	@Override
 	public List<Sponsor> getAllSponsors() throws Exception {
@@ -64,9 +65,8 @@ public class MohTracPortalServiceImpl implements MohTracPortalService {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.openmrs.module.mohtracportal.service.MohTracPortalService#getSponsorById
-	 * (java.lang.Integer)
+	 * @see org.openmrs.module.mohtracportal.service.MohTracPortalService#
+	 * getSponsorById (java.lang.Integer)
 	 */
 	@Override
 	public Sponsor getSponsorById(Integer sponsorId) throws Exception {
@@ -86,22 +86,19 @@ public class MohTracPortalServiceImpl implements MohTracPortalService {
 	}
 
 	@Override
-	public List<SampleCode> getAllSampleTestByLocation(Location location)
-			throws Exception {
+	public List<SampleCode> getAllSampleTestByLocation(Location location) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<SampleCode> getAllSampleTestByPerson(Person personId)
-			throws Exception {
+	public List<SampleCode> getAllSampleTestByPerson(Person personId) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<SampleCode> getAllSampleTestByTestType(Concept testConceptId)
-			throws Exception {
+	public List<SampleCode> getAllSampleTestByTestType(Concept testConceptId) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -123,8 +120,7 @@ public class MohTracPortalServiceImpl implements MohTracPortalService {
 	}
 
 	@Override
-	public SampleCode getSampleTestBySampleCode(String sampleCode)
-			throws Exception {
+	public SampleCode getSampleTestBySampleCode(String sampleCode) throws Exception {
 		return portalDao.getSampleTestBySampleCode(sampleCode);
 	}
 
@@ -139,8 +135,7 @@ public class MohTracPortalServiceImpl implements MohTracPortalService {
 	}
 
 	@Override
-	public List<String> getAllSampleCodesByResultStatus(String status)
-			throws Exception {
+	public List<String> getAllSampleCodesByResultStatus(String status) throws Exception {
 		return portalDao.getAllSampleCodesByResultStatus(status);
 	}
 
@@ -150,8 +145,7 @@ public class MohTracPortalServiceImpl implements MohTracPortalService {
 	}
 
 	@Override
-	public SponsorLocation getLocationSponsorById(Integer locationSponsorId)
-			throws Exception {
+	public SponsorLocation getLocationSponsorById(Integer locationSponsorId) throws Exception {
 		return portalDao.getLocationSponsorById(locationSponsorId);
 	}
 
@@ -166,8 +160,7 @@ public class MohTracPortalServiceImpl implements MohTracPortalService {
 	}
 
 	@Override
-	public List<Integer> getLocationBySponsorId(Integer sponsorId)
-			throws Exception {
+	public List<Integer> getLocationBySponsorId(Integer sponsorId) throws Exception {
 		return portalDao.getLocationBySponsorId(sponsorId);
 	}
 
@@ -177,33 +170,26 @@ public class MohTracPortalServiceImpl implements MohTracPortalService {
 	}
 
 	@Override
-	public List<Integer> getSponsorListByLocationId(Integer sponsorId)
-			throws Exception {
+	public List<Integer> getSponsorListByLocationId(Integer sponsorId) throws Exception {
 		return portalDao.getSponsorListByLocationId(sponsorId);
 	}
 
-	public List<Object> getPatientIdByRegistrationDate(String dateFrom,
-			String dateTo, List<Integer> selectedUsers) throws Exception {
-		return portalDao.getPatientIdByRegistrationDate(dateFrom, dateTo,
-				selectedUsers);
+	public List<Object> getPatientIdByRegistrationDate(String dateFrom, String dateTo, List<Integer> selectedUsers)
+			throws Exception {
+		return portalDao.getPatientIdByRegistrationDate(dateFrom, dateTo, selectedUsers);
 	}
 
-	public String getDateOfFirstRecordByObjectAndByUser(Integer userId,
-			Integer objectId) throws Exception {
-		return portalDao.getDateOfFirstOrLastRecordByObjectAndByUser(userId,
-				objectId, 0);
+	public String getDateOfFirstRecordByObjectAndByUser(Integer userId, Integer objectId) throws Exception {
+		return portalDao.getDateOfFirstOrLastRecordByObjectAndByUser(userId, objectId, 0);
 	}
 
-	public String getDateOfLastRecordByObjectAndByUser(Integer userId,
-			Integer objectId) throws Exception {
-		return portalDao.getDateOfFirstOrLastRecordByObjectAndByUser(userId,
-				objectId, 1);
+	public String getDateOfLastRecordByObjectAndByUser(Integer userId, Integer objectId) throws Exception {
+		return portalDao.getDateOfFirstOrLastRecordByObjectAndByUser(userId, objectId, 1);
 	}
 
-	public String getNumberOfRecordCreatedByObjectAndByUser(Integer userId,
-			Integer objectId, Integer period) throws Exception {
-		return portalDao.getNumberOfRecordCreatedByObjectAndByUser(userId,
-				objectId, period);
+	public String getNumberOfRecordCreatedByObjectAndByUser(Integer userId, Integer objectId, Integer period)
+			throws Exception {
+		return portalDao.getNumberOfRecordCreatedByObjectAndByUser(userId, objectId, period);
 	}
 
 	@Override
@@ -217,7 +203,7 @@ public class MohTracPortalServiceImpl implements MohTracPortalService {
 		Report report = null;
 		List<DefinitionSummary> defs = Context.getService(ReportDefinitionService.class)
 				.getAllDefinitionSummaries(false);
-		
+
 		for (DefinitionSummary ds : defs) {
 			if ("HIV-Adult ART Report-Monthly".equals(ds.getName())) {
 				lostToFollowUp = ds;
@@ -237,5 +223,26 @@ public class MohTracPortalServiceImpl implements MohTracPortalService {
 		}
 
 		return report;
+	}
+
+	@Override
+	public void getLostToFollowupFromReportHistory() {
+		try {
+			List<DefinitionSummary> defs = Context.getService(ReportDefinitionService.class)
+					.getAllDefinitionSummaries(false);
+			List<ReportRequest> history = Context.getService(ReportService.class).getReportRequests(null, null, null,
+					null);
+			List<ReportDefinition> artReportDef = Context.getService(ReportDefinitionService.class)
+					.getDefinitions("HIV-Adult ART Report-Monthly", true);
+			if (history != null) {
+				for (ReportRequest rq : history) {
+
+				}
+			}
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

@@ -80,7 +80,6 @@
 					<spring:message code="@MODULE_ID@.welcome.clinicalActions" />
 				</b>
 				<div class="box">
-					${lostToFollowup}
 				</div>
 			</div>
 			<div style="clear: both;"></div>

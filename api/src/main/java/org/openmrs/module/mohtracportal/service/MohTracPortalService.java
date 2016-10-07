@@ -97,4 +97,6 @@ public interface MohTracPortalService {
 
 	Report executeAndGetAdultArtMonthlyWhichIncludesAdultFollowUpReport();
 
+	void getLostToFollowupFromReportHistory();
+
 }

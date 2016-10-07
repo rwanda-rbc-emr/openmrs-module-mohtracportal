@@ -53,7 +53,8 @@ public class MohTracPortalWelcomePagePortletController extends LayoutPortletCont
 		// mohPortalObjects.put("authUser", Context.getAuthenticatedUser());
 		//
 		// request.setAttribute("mohPortalObjects", mohPortalObjects);
-		addLostToFollowUpReportToModel(mav);
+		//addLostToFollowUpReportToModel(mav);
+		Context.getService(MohTracPortalService.class).getLostToFollowupFromReportHistory();
 		
 		return mav;
 	}
