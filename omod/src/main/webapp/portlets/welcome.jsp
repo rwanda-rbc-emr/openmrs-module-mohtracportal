@@ -80,6 +80,8 @@
 					<spring:message code="@MODULE_ID@.welcome.clinicalActions" />
 				</b>
 				<div class="box">
+					<a href="admin/patients/shortPatientForm.form"><spring:message code="@MODULE_ID@.welcome.createPatient" /></a>
+					<br />
 				</div>
 			</div>
 			<div style="clear: both;"></div>

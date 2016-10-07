@@ -80,7 +80,7 @@
 		<openMRSVersion>1.11.5</openMRSVersion>
 		<calculationVersion>1.0</calculationVersion>
 		<calculationVersion>1.0</calculationVersion>
-		<reportingVersion>0.10.4</reportingVersion>
+		<reportingVersion>0.9.7</reportingVersion>
 		<serializationVersion>0.2.7</serializationVersion>
 	</properties>
 
