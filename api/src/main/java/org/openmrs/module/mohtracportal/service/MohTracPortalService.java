@@ -14,6 +14,7 @@ import org.openmrs.module.mohtracportal.SampleCode;
 import org.openmrs.module.mohtracportal.Sponsor;
 import org.openmrs.module.mohtracportal.SponsorLocation;
 import org.openmrs.module.reporting.report.Report;
+import org.openmrs.module.reporting.report.ReportRequest;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -95,8 +96,6 @@ public interface MohTracPortalService {
 	
 	public int executeMySQLCommand(String sql);
 
-	Report executeAndGetAdultArtMonthlyWhichIncludesAdultFollowUpReport();
-
-	void getLostToFollowupFromReportHistory();
+	ReportRequest executeAndGetAdultFollowUpReportRequest();
 
 }

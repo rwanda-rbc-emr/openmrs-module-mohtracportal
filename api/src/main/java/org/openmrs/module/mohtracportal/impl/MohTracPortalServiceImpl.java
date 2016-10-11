@@ -6,7 +6,6 @@ package org.openmrs.module.mohtracportal.impl;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.hibernate.HibernateException;
 import org.openmrs.Concept;
 import org.openmrs.Location;
 import org.openmrs.Obs;
@@ -19,7 +18,6 @@ import org.openmrs.module.mohtracportal.db.MohTracPortalDAO;
 import org.openmrs.module.mohtracportal.service.MohTracPortalService;
 import org.openmrs.module.reporting.definition.DefinitionSummary;
 import org.openmrs.module.reporting.evaluation.parameter.Mapped;
-import org.openmrs.module.reporting.report.Report;
 import org.openmrs.module.reporting.report.ReportRequest;
 import org.openmrs.module.reporting.report.ReportRequest.Priority;
 import org.openmrs.module.reporting.report.definition.ReportDefinition;
@@ -198,14 +196,14 @@ public class MohTracPortalServiceImpl implements MohTracPortalService {
 	}
 
 	@Override
-	public Report executeAndGetAdultArtMonthlyWhichIncludesAdultFollowUpReport() {
+	public ReportRequest executeAndGetAdultFollowUpReportRequest() {
 		DefinitionSummary lostToFollowUp = null;
-		Report report = null;
+		ReportRequest reportRequest = null;
 		List<DefinitionSummary> defs = Context.getService(ReportDefinitionService.class)
 				.getAllDefinitionSummaries(false);
 
 		for (DefinitionSummary ds : defs) {
-			if ("HIV-Adult ART Report-Monthly".equals(ds.getName())) {
+			if ("LostToFollowupPatients".equals(ds.getName())) {
 				lostToFollowUp = ds;
 				break;
 			}
@@ -216,33 +214,21 @@ public class MohTracPortalServiceImpl implements MohTracPortalService {
 			ReportDefinition def = Context.getService(ReportDefinitionService.class)
 					.getDefinitionByUuid(lostToFollowUp.getUuid());
 
-			if (rr != null)
+			if (rr == null) {
 				rr = new ReportRequest(new Mapped<ReportDefinition>(def, null), null,
 						new RenderingMode(new DefaultWebRenderer(), "Web", null, 100), Priority.NORMAL, null);
-			report = Context.getService(ReportService.class).runReport(rr);
-		}
 
-		return report;
-	}
-
-	@Override
-	public void getLostToFollowupFromReportHistory() {
-		try {
-			List<DefinitionSummary> defs = Context.getService(ReportDefinitionService.class)
-					.getAllDefinitionSummaries(false);
-			List<ReportRequest> history = Context.getService(ReportService.class).getReportRequests(null, null, null,
-					null);
-			List<ReportDefinition> artReportDef = Context.getService(ReportDefinitionService.class)
-					.getDefinitions("HIV-Adult ART Report-Monthly", true);
-			if (history != null) {
-				for (ReportRequest rq : history) {
-
-				}
+				rr.setStatus(ReportRequest.Status.REQUESTED);
+				rr.setPriority(ReportRequest.Priority.NORMAL);
+				rr.getReportDefinition().addParameterMapping("Health Center",
+						Context.getLocationService().getLocation(Integer.parseInt(Context.getAdministrationService()
+								.getGlobalProperty("mohtracportal.defaultLocationId"))).getName());
+				rr = Context.getService(ReportService.class).saveReportRequest(rr);
 			}
-		} catch (HibernateException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
+			reportRequest = rr;
 		}
+
+		return reportRequest;
 	}
+
 }

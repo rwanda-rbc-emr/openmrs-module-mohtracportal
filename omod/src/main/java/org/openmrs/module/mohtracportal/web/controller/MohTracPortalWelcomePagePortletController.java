@@ -4,7 +4,6 @@
 package org.openmrs.module.mohtracportal.web.controller;
 
 import java.io.IOException;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +13,7 @@ import org.openmrs.api.context.Context;
 import org.openmrs.layout.web.LayoutSupport;
 import org.openmrs.layout.web.address.AddressSupport;
 import org.openmrs.module.mohtracportal.service.MohTracPortalService;
-import org.openmrs.module.reporting.report.Report;
+import org.openmrs.module.reporting.report.ReportRequest;
 import org.openmrs.web.controller.layout.LayoutPortletController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -36,9 +35,9 @@ public class MohTracPortalWelcomePagePortletController extends LayoutPortletCont
 	}
 
 	private void addLostToFollowUpReportToModel(ModelAndView mav) {
-		Report lostFollowUpreport = Context.getService(MohTracPortalService.class)
-				.executeAndGetAdultArtMonthlyWhichIncludesAdultFollowUpReport();
-				
+		ReportRequest lostFollowUpreport = Context.getService(MohTracPortalService.class)
+				.executeAndGetAdultFollowUpReportRequest();
+
 		mav.addObject("lostToFollowup", lostFollowUpreport != null ? lostFollowUpreport : "");
 	}
 
@@ -53,9 +52,7 @@ public class MohTracPortalWelcomePagePortletController extends LayoutPortletCont
 		// mohPortalObjects.put("authUser", Context.getAuthenticatedUser());
 		//
 		// request.setAttribute("mohPortalObjects", mohPortalObjects);
-		//addLostToFollowUpReportToModel(mav);
-		//Context.getService(MohTracPortalService.class).getLostToFollowupFromReportHistory();
-		
+		addLostToFollowUpReportToModel(mav);
 		return mav;
 	}
 

@@ -20,6 +20,8 @@
 	<require_modules>
 		<require_module version="${reportingVersion}">org.openmrs.module.reporting</require_module>
 		<require_module version="${serializationVersion}">org.openmrs.module.serialization.xstream</require_module>
+		<require_module>org.openmrs.module.htmlwigets</require_module>
+		<require_module version="${rwandasphstudyreportsVersion}">org.openmrs.module.rwandasphstudyreports</require_module>
 	</require_modules>
 	<!-- / Required Modules -->
 
