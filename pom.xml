@@ -53,24 +53,10 @@
 				<type>pom</type>
 				<scope>test</scope>
 			</dependency>
-			
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
-				<artifactId>reporting-api</artifactId>														
-				<version>${reportingVersion}</version>
-				<type>jar</type>							
-				<scope>provided</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.openmrs.module</groupId>
-				<artifactId>calculation-api</artifactId>
-				<version>${calculationVersion}</version>
-				<scope>provided</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.openmrs.module</groupId>
-				<artifactId>serialization.xstream-api</artifactId>
-				<version>${serializationVersion}</version>
+				<artifactId>rwandasphstudyreports-api</artifactId>
+				<version>${rwandasphstudyreportsVersion}</version>
 				<scope>provided</scope>
 			</dependency>
 		</dependencies>
@@ -78,10 +64,7 @@
 
 	<properties>
 		<openMRSVersion>1.11.5</openMRSVersion>
-		<calculationVersion>1.0</calculationVersion>
-		<calculationVersion>1.0</calculationVersion>
-		<reportingVersion>0.9.7</reportingVersion>
-		<serializationVersion>0.2.7</serializationVersion>
+		<rwandasphstudyreportsVersion>1.0-SNAPSHOT</rwandasphstudyreportsVersion>
 	</properties>
 
 	<build>

@@ -13,7 +13,6 @@ import org.openmrs.Person;
 import org.openmrs.module.mohtracportal.SampleCode;
 import org.openmrs.module.mohtracportal.Sponsor;
 import org.openmrs.module.mohtracportal.SponsorLocation;
-import org.openmrs.module.reporting.report.Report;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -79,24 +78,18 @@ public interface MohTracPortalService {
 	/* end of behavior of a sponsorlocation */
 
 	/* Patient list */
-	public List<Object> getPatientIdByRegistrationDate(String dateFrom,
-			String dateTo, List<Integer> selectedUsers) throws Exception;
+	public List<Object> getPatientIdByRegistrationDate(String dateFrom, String dateTo, List<Integer> selectedUsers)
+			throws Exception;
 
-	public String getDateOfFirstRecordByObjectAndByUser(Integer userId,
-			Integer objectId) throws Exception;
+	public String getDateOfFirstRecordByObjectAndByUser(Integer userId, Integer objectId) throws Exception;
 
-	public String getDateOfLastRecordByObjectAndByUser(Integer userId,
-			Integer objectId) throws Exception;
+	public String getDateOfLastRecordByObjectAndByUser(Integer userId, Integer objectId) throws Exception;
 
-	public String getNumberOfRecordCreatedByObjectAndByUser(Integer userId,
-			Integer objectId, Integer period) throws Exception;
+	public String getNumberOfRecordCreatedByObjectAndByUser(Integer userId, Integer objectId, Integer period)
+			throws Exception;
 
 	/* end Patient list */
-	
+
 	public int executeMySQLCommand(String sql);
-
-	Report executeAndGetAdultArtMonthlyWhichIncludesAdultFollowUpReport();
-
-	void getLostToFollowupFromReportHistory();
 
 }
