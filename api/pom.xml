@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.openmrs.module</groupId>
 		<artifactId>mohtracportal</artifactId>
-		<version>0.2.7-SNAPSHOT</version>
+		<version>0.2.7</version>
 	</parent>
 	<artifactId>mohtracportal-api</artifactId>
 	<packaging>jar</packaging>
