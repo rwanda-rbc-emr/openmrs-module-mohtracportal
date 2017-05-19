@@ -35,12 +35,9 @@ public class MohTracPortalWelcomePagePortletController extends LayoutPortletCont
 			throws ServletException, IOException {
 		ModelAndView mav = super.handleRequest(request, response);
 		String portletPath = "/module/mohtracportal/portlets/welcome";
+		
 		mav.setViewName(portletPath);
 
-		// Map<String, Object> mohPortalObjects = new HashMap<String, Object>();
-		// mohPortalObjects.put("authUser", Context.getAuthenticatedUser());
-		// request.setAttribute("mohPortalObjects", mohPortalObjects);
-		
 		return mav;
 	}
 

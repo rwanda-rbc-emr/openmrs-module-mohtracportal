@@ -82,7 +82,9 @@
 				<div class="box">
 					<a href="admin/patients/shortPatientForm.form"><spring:message code="@MODULE_ID@.welcome.createPatient" /></a>
 					<br /><br />
-					<a href="module/rwandasphstudyreports/reDirectToAdultFollowupReport.form"><spring:message code="@MODULE_ID@.welcome.latestAdultLostToFollowUp" /></a>
+					<a href="module/rwandasphstudyreports/reDirectToPatientsWithNoVLAfter8MonthsReport.form"><spring:message code="@MODULE_ID@.welcome.patientsWithNoVLAfter8MonthsReport" /></a>
+					<br /><br />
+					<a href="module/rwandasphstudyreports/reDirectToVLBasedTreatmentFailureReport.form"><spring:message code="@MODULE_ID@.welcome.vLBasedTreatmentFailure" /></a>
 				</div>
 			</div>
 			<div style="clear: both;"></div>
