@@ -1,6 +1,6 @@
 <%@ include file="/WEB-INF/template/include.jsp" %>
 
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/tracportal.css" />
+<openmrs:htmlInclude file="/moduleResources/mohtracportal/tracportal.css" />
 
 <script type="text/javascript">
 	jQuery.noConflict();
@@ -41,7 +41,7 @@
 			</div>
 			<div style="width: 24%; float: right;">
 				<b class="boxHeader">
-					<spring:message code="@MODULE_ID@.usefulLinks" />
+					<spring:message code="mohtracportal.usefulLinks" />
 				</b>
 				<div class="box">
 					
@@ -77,14 +77,16 @@
 			<br/>
 			<div style="width: 74%; float: left;">
 				<b class="boxHeader">
-					<spring:message code="@MODULE_ID@.welcome.clinicalActions" />
+					<spring:message code="mohtracportal.welcome.clinicalActions" />
 				</b>
 				<div class="box">
-					<a href="admin/patients/shortPatientForm.form"><spring:message code="@MODULE_ID@.welcome.createPatient" /></a>
+					<a href="admin/patients/shortPatientForm.form"><spring:message code="mohtracportal.welcome.createPatient" /></a>
 					<br /><br />
-					<a href="module/rwandasphstudyreports/reDirectToPatientsWithNoVLAfter8MonthsReport.form"><spring:message code="@MODULE_ID@.welcome.patientsWithNoVLAfter8MonthsReport" /></a>
+					<a href="module/rwandasphstudyreports/reDirectToPatientsWithNoVLAfter8MonthsReport.form"><spring:message code="mohtracportal.welcome.patientsWithNoVLAfter8MonthsReport" /></a>
 					<br /><br />
-					<a href="module/rwandasphstudyreports/reDirectToVLBasedTreatmentFailureReport.form"><spring:message code="@MODULE_ID@.welcome.vLBasedTreatmentFailure" /></a>
+					<a href="module/vcttrac/delayInLinkageToCare.form"><spring:message code="vcttrac.delayInLinkageToCare" /></a>
+					<br /><br />
+					<a href="module/rwandasphstudyreports/reDirectToVLBasedTreatmentFailureReport.form"><spring:message code="mohtracportal.welcome.vLBasedTreatmentFailure" /></a>
 				</div>
 			</div>
 			<div style="clear: both;"></div>
