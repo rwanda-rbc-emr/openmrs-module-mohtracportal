@@ -86,6 +86,8 @@
 					<br /><br />
 					<a href="module/vcttrac/delayInLinkageToCare.form"><spring:message code="vcttrac.delayInLinkageToCare" /></a>
 					<br /><br />
+					<a href="module/rwandasphstudyreports/adultConsultationSheet.form"><spring:message code="rwandasphstudyreports.adultConsultationSheet" /></a>
+					<br /><br />
 					<a href="module/rwandasphstudyreports/reDirectToVLBasedTreatmentFailureReport.form"><spring:message code="mohtracportal.welcome.vLBasedTreatmentFailure" /></a>
 				</div>
 			</div>
