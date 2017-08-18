@@ -80,7 +80,7 @@
 					<spring:message code="mohtracportal.welcome.clinicalActions" />
 				</b>
 				<div class="box">
-					<a href="module/rwandasphstudyreports/hivPatientForm.form"><spring:message code="mohtracportal.welcome.createPatient" /></a>
+					<a href="module/vcttrac/hivPatientForm.form"><spring:message code="mohtracportal.welcome.createPatient" /></a>
 					<br /><br />
 					<a href="module/rwandasphstudyreports/reDirectToPatientsWithNoVLAfter8MonthsReport.form"><spring:message code="mohtracportal.welcome.patientsWithNoVLAfter8MonthsReport" /></a>
 					<br /><br />
