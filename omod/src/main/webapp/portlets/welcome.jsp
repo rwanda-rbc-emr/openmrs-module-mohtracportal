@@ -82,13 +82,25 @@
 				<div class="box">
 					<a href="module/vcttrac/hivPatientForm.form"><spring:message code="mohtracportal.welcome.createPatient" /></a>
 					<br /><br />
-					<a href="module/rwandasphstudyreports/reDirectToPatientsWithNoVLAfter8MonthsReport.form"><spring:message code="mohtracportal.welcome.patientsWithNoVLAfter8MonthsReport" /></a>
-					<br /><br />
 					<a href="module/vcttrac/delayInLinkageToCare.form"><spring:message code="vcttrac.delayInLinkageToCare" /></a>
 					<br /><br />
 					<a href="module/rwandasphstudyreports/adultConsultationSheet.form"><spring:message code="rwandasphstudyreports.adultConsultationSheet" /></a>
 					<br /><br />
 					<a href="module/rwandasphstudyreports/reDirectToVLBasedTreatmentFailureReport.form"><spring:message code="mohtracportal.welcome.vLBasedTreatmentFailure" /></a>
+					<br /><br />
+					<a href="module/rwandasphstudyreports/reDirectToOutStandingBaselineCD4Report.form">OutStanding Baseline CD4 Report</a>
+					<br /><br />
+					<a href="module/rwandasphstudyreports/reDirectToOutStandingBaselineVLReport.form">OutStanding Baseline Viral Load Report</a>
+					<br /><br />
+					<a href="module/rwandasphstudyreports/reDirectToVLBasedTreatmentFailureReport.form">Viral Load Based Treatment Failure Report</a>
+					<br /><br />
+					<a href="module/rwandasphstudyreports/reDirectToCD4BasedTreatmentFailureReport.form">CD4 Based Treatment Failure Report</a>
+					<br /><br />
+					<a href="module/rwandasphstudyreports/reDirectToPatientsOnARTWithNoClinicalVisitsInLast4MonthsReport.form">Patients on ART with no Clinical Visits in Last 4 Months Report</a>
+					<br /><br />
+					<a href="module/rwandasphstudyreports/reDirectToPatientsNotInitiatedOnARTReport.form">Patients not initiated on ART Report</a>
+					<br /><br />
+					<a href="module/rwandasphstudyreports/reDirectToHIVPositivePatientsDelayInLinkageToCareReport.form">HIV Positive patients delayed in Linkage to care Report</a>
 				</div>
 			</div>
 			<div style="clear: both;"></div>
